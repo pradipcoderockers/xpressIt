@@ -331,8 +331,8 @@ app.post('/sale', XpressItOrdersController.getSales)
 
 
 app.get('*', routes.index);
-app.listen(PORT);
-console.log('Running on http://localhost:' + PORT);
+app.listen(8080);
+console.log('Running on http://localhost:' + 8080);
 
 function ensureAuthenticated(req, res, next) {
 
