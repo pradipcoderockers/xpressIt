@@ -1,0 +1,59 @@
+<%- include headerAdmin.ejs %>
+    <div class="wrapper" class="body-bg-black">
+
+
+        <div class="col-md-12">
+
+            <div class="container-body" style="padding:20px;margin:20px">
+
+
+                <form name="addServiceTypeForm" novalidate ng-submit="!addServiceTypeForm.$valid||service.addServiceType()">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h3 align="center">Service Type </h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <label class="item item-input">
+                            <input type="text" placeholder="New Service" ng-model="service.newService.service" name="service" ng-required="true" class="form-control">
+                        </label>
+
+                            <div class="form-group has-error has-feedback" ng-show="addServiceTypeForm.service.$error.required && service.submitted==true">
+                                <label class="control-label">Service is required </label>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button class="btn btn-primary" ng-click="service.submitted=true">Add New Service</button>
+                        </div>
+                    </div>
+                </form>
+
+
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <div class="has-error" ng-if="service.saved">
+                            <label class="control-label">Service Saved</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-center">
+
+                        <div class="has-error" ng-if="service.error">
+                            <label class="control-label">Service Not Saved</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Content -->
+
+
+        </div>
+        <!--/End Wrapepr-->
+    </div>

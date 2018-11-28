@@ -1,0 +1,130 @@
+<%- include header.ejs %>
+<div id="wrapper" class="body-bg-black">
+
+
+    <div id="page-wrapper" class="gray-bg">
+        <%- include innerHeader.ejs %>
+
+        <div class=" text-center loginscreen animated fadeInDown">
+            <form name="addEmployeeForm" class="m-t" role="form" novalidate
+                  ng-submit="!addEmployeeForm.$valid||RECtrl.submit()">
+                <div class="row">
+
+                    <div class="col-md-6 col-lg-4">
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="First Name" ng-required="true"
+                                   ng-model="RECtrl.user.firstName" name="firstName">
+                            <div ng-if="addEmployeeForm.firstName.$error.required && RECtrl.submitted">
+                                <div class="errors">Please enter first name.</div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Last Name" ng-required="true"
+                                   ng-model="RECtrl.user.lastName" name="lastName">
+                            <div ng-if="addEmployeeForm.lastName.$error.required && RECtrl.submitted">
+                                <div class="errors">Please enter last name.</div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Organization Name"
+                                   ng-model="RECtrl.user.organization_name" name="organization_name" ng-required="true">
+                            <div ng-if="addEmployeeForm.organization_name.$error.required && RECtrl.submitted">
+                                <div class="errors">Please enter organization name.</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="tel" class="form-control" placeholder="Phone Number" ng-required="true"
+                                   ng-model="RECtrl.user.phoneNumber" limit-to="8" ng-minlength="8" ng-maxlength="8"
+                                   numbers-only name="phoneNumber">
+                            <div ng-if="addEmployeeForm.phoneNumber.$error.required && RECtrl.submitted">
+                                <div class="errors">Please enter phone number.</div>
+                            </div>
+                            <div ng-if="addEmployeeForm.phoneNumber.$error.minlength">
+                                <div class="errors">8 digits only</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Email" ng-required="true"
+                                   ng-model="RECtrl.user.email" name="email">
+                            <div ng-if="addEmployeeForm.email.$error.required && RECtrl.submitted">
+                                <div class="errors">Please enter email</div>
+                            </div>
+
+                            <div ng-if="!addEmployeeForm.email.$error.required && addEmployeeForm.email.$invalid && RECtrl.submitted">
+                                <div class="errors">Please enter a valid email</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Password" ng-required="true"
+                                   ng-model="RECtrl.user.password" name="password">
+                            <div ng-if="addEmployeeForm.password.$error.required && RECtrl.submitted">
+                                <div class="errors">Please enter password</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Description"
+                                      ng-model="RECtrl.user.description"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+
+                        <div class="row border-bottom-gray margin-right-10 margin-bottom-10">
+                            <div class="col-sm-12 text-left">
+                                <h3>Select provided services</h3>
+                            </div>
+                        </div>
+                        <div class="form-group text-left">
+                            <div ng-if="RECtrl.categoryRequired" class="text-danger">Select at least one category</div>
+                            <div ng-repeat="category in RECtrl.category"><label> {{category.category
+                                    |capitalize}} </label>
+                                <div class="checkbox i-checks" ng-repeat="service in category.services"><label> <input
+                                                type="checkbox" ng-model="service.checkBoxVal"
+                                                ng-click="RECtrl.addServiceType(service)"><i></i>
+                                        {{service.serviceType }} </label></div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="row border-bottom-gray margin-left-10 margin-right-10 margin-bottom-10">
+                            <div class="col-sm-12 text-left">
+                                <h3>Select profile image</h3>
+                            </div>
+                        </div>
+                        <div ng-if="RECtrl.file">
+                            <img ng-src="{{RECtrl.file.$ngfBlobUrl}}" class="profileImageBlock">
+                        </div>
+                        <div class="text-center text-danger" ng-if="RECtrl.fileRequired">
+                            Please select image
+                        </div>
+                        <button class="btn btn-primary form-group margin-top-20" ngf-select ng-model="RECtrl.file"
+                                name="file" ngf-pattern="'image/*'"
+                                ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100">
+                            Select
+                        </button>
+                    </div>
+                </div>
+                <div class="row border-top-dark padding-top-20">
+                    <div class="col-sm-12 text-center">
+                        <button type="submit" class="btn btn-primary block m-b registerButton" ng-click="RECtrl.submitted=true">Register</button>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+</div>

@@ -1,0 +1,504 @@
+<%- include header.ejs %>
+<div id="wrapper" class="body-bg-black">
+
+
+    <div id="page-wrapper" class="gray-bg">
+
+        <%- include innerHeader.ejs %>
+
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="allOrders" class="pre-scrollable maxh-500">
+                        <div class="row" ng-repeat="employee in empCtrl.allEmployees">
+                            <div class="col-md-12">
+                                <div class="contact-box" ng-click="empCtrl.openProviderInfo(employee)">
+                                    <a>
+                                        <div class="col-sm-2 col-md-2">
+                                            <div class="text-center">
+                                                <img ng-src="/{{employee.imageURL}}"
+                                                     class=" m-t-xs img-responsive">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-10 col-md-10">
+                                            <div class="row">
+                                                <button class="btn btn-danger" ng-if="employee.accountActive"
+                                                        ng-click="empCtrl.disableEmployee(employee);$event.stopPropagation()">
+                                                    Disable Employee
+                                                </button>
+
+                                                <button class="btn btn-danger" ng-if="!employee.accountActive"
+                                                        ng-click="empCtrl.disableEmployee(employee);$event.stopPropagation()">
+                                                    Enable Employee
+                                                </button>
+                                                <div class="col-sm-12 col-md-12 text-large">
+                                                    Name: {{employee.name}}
+                                                </div>
+                                            </div>
+                                            <div class="row padding-top-5 padding-bottom-5">
+                                                <div class="col-sm-12 col-md-6">
+                                                    <i class="fa fa-2x fa-star golden"></i>
+                                                    <i class="fa fa-2x golden"
+                                                       ng-class="{'fa-star':employee.averageRating>=2,
+                                                   'fa-star-half':employee.averageRating>1 && employee.averageRating<2,'fa-star-o':employee.averageRating<=1}"></i>
+                                                    <i class="fa fa-2x golden"
+                                                       ng-class="{'fa-star':employee.averageRating>=3,
+                                                   'fa-star-half':employee.averageRating>2 && employee.averageRating<3,'fa-star-o':employee.averageRating<=2}"></i>
+                                                    <i class="fa fa-2x golden"
+                                                       ng-class="{'fa-star':employee.averageRating>=4,
+                                                   'fa-star-half':employee.averageRating>3 && employee.averageRating<4,'fa-star-o':employee.averageRating<=3}"></i>
+                                                    <i class="fa fa-2x golden"
+                                                       ng-class="{'fa-star':employee.averageRating==5,
+                                                   'fa-star-half':employee.averageRating>4 && employee.averageRating<5,'fa-star-o':employee.averageRating<=4}"></i>
+                                                    <span class="bold button-line-height">{{employee.averageRating}}</span>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-6">
+                                                    Total Services Offered: {{employee.serviceOffered.length}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <button type="button" class="btn" ng-if="empCtrl.showProviderInfo"
+                            ng-class="{'button-tab-active':empCtrl.employeeDetails,'button-tab-inactive':!empCtrl.employeeDetails}"
+                            ng-click="empCtrl.toggle()">Employee Details
+                    </button>
+                    <button type="button" class="btn" ng-if="empCtrl.showProviderInfo"
+                            ng-class="{'button-tab-active':empCtrl.showHistory,'button-tab-inactive':!empCtrl.showHistory}"
+                            ng-click="empCtrl.toggle();empCtrl.workHistory(empCtrl.veiwProvider)">Work History
+                    </button>
+                    <div ng-if="empCtrl.showProviderInfo && empCtrl.employeeDetails">
+                        <div class="contact-box margin-bottom-0 tab-pull-up">
+                            <div class="row">
+                                <div class="col-sm-12 text-center ">
+                                    <h2 class="margin-top-0 border-bottom-gray padding-bottom-10">
+                                        <small><strong>EMPLOYEE DETAILS</strong></small>
+                                    </h2>
+                                </div>
+                            </div>
+                            <div class="row m-t">
+                                <div class="col-sm-12 col-md-8 text-right">
+
+                                    <div class="row text-left">
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-12">
+
+                                                    <div class="col-sm-12 padding-right-0 ellipsis">
+                                                        {{empCtrl.veiwProvider.name}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-12">
+                                                    <div class="col-sm-4 padding-0">Description:
+                                                    </div>
+                                                    <div class="col-sm-8 padding-right-0">
+                                                        {{empCtrl.veiwProvider.description}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-12">
+                                                    <div class="col-sm-4 padding-0"> Total Rating:</div>
+                                                    <div class="col-sm-8 padding-right-0">
+                                                        {{empCtrl.veiwProvider.totalRating}}
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-12">
+                                                    <div class="col-sm-4 padding-0">Average Rating:</div>
+                                                    <div class="col-sm-8 padding-right-0">
+                                                        {{empCtrl.veiwProvider.averageRating}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-12">
+                                                    <div class="col-sm-4 padding-0">SERVICES OFFERED:</div>
+                                                    <div class="col-sm-8 padding-right-0">
+                                                        <span ng-repeat="service in empCtrl.veiwProvider.serviceOffered">
+                                                          {{service.serviceType | capitalize}},
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 col-md-4 text-right">
+                                    <img ng-src="/{{empCtrl.veiwProvider.imageURL}}"
+                                         class=" m-t-xs img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-box no-border margin-bottom-0 padding-top-5 ">
+
+                            <div class="row">
+                                <div class="col-sm-6 text-right" ng-click="empCtrl.showEditForm=true">
+                                    <button class="btn btn-primary">Edit Employee Details</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <button class="btn btn-danger">Disable Employee</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="empCtrl.showProviderInfo && empCtrl.showHistory">
+                        <div class="contact-box margin-bottom-0 tab-pull-up">
+                            <div class="row">
+                                <div class="col-sm-12 text-center">
+                                    <h2 class="margin-top-0 border-bottom-gray padding-bottom-10">
+                                        <small><strong>EMPLOYEE WORK HISTORY</strong></small>
+                                    </h2>
+                                </div>
+                            </div>
+                            <div class="contact-box padding-top-5 padding-bottom-5 margin-bottom-5"
+                                 ng-class="{'border-gray':!empCtrl.showHistoryDetail,'active-border':empCtrl.showHistoryDetail}">
+                                <div ng-click="empCtrl.showHistoryDetail=!empCtrl.showHistoryDetail"
+                                     style="cursor: pointer" ng-repeat="order in empCtrl.employeeAllOrder">
+
+                                    <div class="row border-bottom-gray margin-bottom-10 padding-top-5 padding-bottom-5">
+                                        <div class="col-sm-10 text-muted">
+                                            Order No: {{order.orderNo}}
+                                        </div>
+                                        <div class="col-sm-2 text-right">
+                                            <i class="fa fa-2x"
+                                               ng-class="{'fa-check-circle green':order.status=='completed',
+                                                   'fa-times-circle red':order.status=='cancelled',
+                                                   'fa-clock-o orange':order.status=='current',
+                                                   'fa-ellipsis-h gray':order.status=='unfulfilled'}"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 col-md-2">
+                                        <div class="text-center">
+                                            <img ng-src="{{('img/'+order.serviceCategory+'.png')}}" alt="image"
+                                                 class=" m-t-xs img-responsive">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10 col-md-10">
+                                        <div class="row">
+
+                                            <div class="col-sm-6">
+                                                <h2 class="margin-top-0 text-success">{{order.serviceType}}</h2>
+                                            </div>
+                                            <div class="col-sm-6 ">
+                                                <h2 class="margin-top-0 text-right text-primary">
+                                                    {{order.serviceDate|date:'dd MMM yy'}}</h2>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6 text-primary">
+
+                                            </div>
+                                            <div class="col-sm-12 col-md-6">
+                                                <h2 class="margin-top-0 text-right">
+                                                    <small>{{order.serviceTimeSlot}}</small>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-offset-2 col-md-offset-2 col-sm-10 col-md-10">
+                                        <div class="row">
+
+                                            <div class="col-sm-6">
+                                                <h2 class="margin-top-0">
+                                                    <small>
+                                                        Start time: {{order.employeeStartTime|date:'hh:mm a'}}</small></h2>
+                                            </div>
+                                            <div class="col-sm-6 ">
+                                                <h2 class="margin-top-0 text-right text-primary">
+                                                    <small>
+                                                    End time:{{order.employeeStartEndTime|date:'hh:mm a'}}</small></h2>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-sm-offset-2 col-md-offset-2 col-sm-10 col-md-10">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <h2 class="margin-top-0">
+                                                    <small>  Start Location:
+                                                     {{order.employeeStartLocationLat}}
+                                                    {{order.employeeStartLocationLong}}
+                                                </small></h2>
+                                            </div>
+                                            <div class="col-sm-6 ">
+                                                <h2 class="margin-top-0 text-right text-primary">
+                                                    <small> End Location:
+                                                     {{order.employeeStartLocationEndLat}}
+                                                    {{order.employeeStartLocationEndLong}}
+                                                </small></h2>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-offset-2  col-md-offset-2 col-sm-10 col-md-10">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <h2 class="margin-top-0">
+                                                    <small>
+                                                    Customer Rating: {{order.orderRating}}
+                                                        </small></h2>
+                                            </div>
+                                            <div class="col-sm-6 ">
+                                                <h2 class="margin-top-0 text-right text-primary">
+
+                                                    <small> Customer Feedback: <span
+                                                            ng-repeat="feedback in order.customerFeedback">{{feedback}}  </span>
+                                                        </small>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div ng-show="empCtrl.showHistoryDetail" class="border-top-gray">
+                                    <div class="row ">
+
+                                        <div class="col-sm-12 col-md-6 m-t">
+
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-12">
+                                                    <h4>CUSTOMER DETAILS</h4>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+
+                                                <div class="col-sm-12 col-md-12">
+                                                    Name: {{orders.veiwOrder.customerName}}
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+
+                                                <div class="col-sm-6 ">
+                                                    Phone: {{orders.veiwOrder.customerPhoneNumber}}
+                                                </div>
+                                                <div class="col-sm-6 ">
+                                                    Email: {{orders.veiwOrder.customerEmail}}
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row">
+
+                                                <div class="col-sm-12 col-md-12">
+                                                    Address: {{orders.veiwOrder.customerAddress}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row ">
+
+                                        <div class="col-sm-12 col-md-6 m-t">
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-12">
+                                                    <h4>WORK COMPLETION DETAILS</h4>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-6">
+                                                    Start Time
+                                                </div>
+                                                <div class="col-sm-12 col-md-6">
+                                                    Finish Time
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-6 ">
+                                                    Start Coord
+                                                </div>
+                                                <div class="col-sm-6 ">
+                                                    End Coord
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-12">
+                                                    Rating
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-12">
+                                                    Feedback
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class=" text-center loginscreen   animated fadeInDown" ng-if="empCtrl.showEditForm">
+                <form class="m-t" role="form" name="editEmployeeForm"
+                      ng-submit="!editEmployeeForm.$valid||empCtrl.submit()" novalidate>
+                    <div class="row">
+
+                        <div class="col-md-6 col-lg-4">
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="First Name" ng-required="true"
+                                       ng-model="empCtrl.user.firstName" name="firstName">
+                                <div ng-if="editEmployeeForm.firstName.$error.required && empCtrl.submitted">
+                                    <div class="errors">Please enter first name.</div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Last Name" ng-required="true"
+                                       ng-model="empCtrl.user.lastName" name="lastName">
+                                <div ng-if="editEmployeeForm.lastName.$error.required && empCtrl.submitted">
+                                    <div class="errors">Please enter last name.</div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Organization Name"
+                                       ng-model="empCtrl.user.organization_name" name="organization_name" ng-required="true">
+                                <div ng-if="editEmployeeForm.organization_name.$error.required && empCtrl.submitted">
+                                    <div class="errors">Please enter organization name.</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="tel" class="form-control" placeholder="Phone Number" ng-required="true"
+                                       ng-model="empCtrl.user.phoneNumber" limit-to="8"
+                                       ng-minlength="8" ng-maxlength="8" numbers-only name="phoneNumber">
+                                <div ng-if="editEmployeeForm.phoneNumber.$error.required && empCtrl.submitted">
+                                    <div class="errors">Please enter phone number.</div>
+                                </div>
+                                <div ng-if="editEmployeeForm.phoneNumber.$error.minlength">
+                                    <div class="errors">8 digits only</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Email" ng-required="true"
+                                       ng-model="empCtrl.user.email" disabled name="email">
+                            </div>
+
+
+
+                            <div class="form-group">
+                            <textarea class="form-control" placeholder="Description"
+                                      ng-model="empCtrl.user.description"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+
+                            <div class="row border-bottom-gray margin-right-10 margin-bottom-10">
+                                <div class="col-sm-12 text-left">
+                                    <h3>Select provided services</h3>
+                                </div>
+                            </div>
+                            <div class="form-group text-left">
+                                <div ng-repeat="category in empCtrl.category"><label> {{category.category
+                                        |capitalize}} </label>
+                                    <div class="checkbox i-checks" ng-repeat="service in category.services"><label>
+                                            <input
+                                                    type="checkbox" ng-model="service.checkBoxVal"
+                                                    ng-click="empCtrl.addServiceType(service)"><i></i>
+                                            {{service.serviceType }} </label></div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="row border-bottom-gray margin-left-10 margin-right-10 margin-bottom-10">
+                                <div class="col-sm-12 text-left">
+                                    <h3>Select profile image</h3>
+                                </div>
+                            </div>
+                            <div ng-if="empCtrl.file">
+                                <img ng-src="{{empCtrl.file.$ngfBlobUrl}}" class="profileImageBlock">
+                            </div>
+
+                            <div ng-if="!empCtrl.file">
+                                <img ng-src="/{{empCtrl.user.imageURL}}" class="profileImageBlock">
+                            </div>
+
+
+                            <button class="btn btn-primary form-group margin-top-20" ngf-select ng-model="empCtrl.file"
+                                    name="file" ngf-pattern="'image/*'"
+                                    ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100">
+                                Select
+                            </button>
+                            <div ng-if="RSPCtrl.fileRequired" class="errors">Please upload image</div>
+                        </div>
+                    </div>
+                    <div class="row border-top-dark padding-top-20">
+                        <div class="col-sm-6 text-right">
+                            <button class="btn btn-danger m-b" ng-click="empCtrl.showEditForm=false">Cancel</button>
+                        </div>
+                        <div class="col-sm-6 text-left">
+                            <button type="submit" class="btn btn-primary m-b" ng-click="empCtrl.submitted=true">Submit
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+
+        </div>
+        <!--<div class="ibox-content">-->
+        <!--<form class="form-horizontal">-->
+        <!--<div class="form-group"><label class="col-lg-2 control-label">Email</label>-->
+
+        <!--<div class="col-lg-10"><input type="email" placeholder="Email" class="form-control">-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group"><label class="col-lg-2 control-label">Password</label>-->
+
+        <!--<div class="col-lg-10"><input type="password" placeholder="Password" class="form-control"></div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+        <!--<div class="col-lg-offset-2 col-lg-10">-->
+        <!--<button class="btn btn-sm btn-white" type="submit">Sign in</button>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</form>-->
+        <!--</div>-->
+
+        <!--<div class="footer">-->
+            <!--<div class="pull-right">-->
+
+            <!--</div>-->
+            <!--<div>-->
+                <!--<strong>Copyright</strong> Youstart &copy; 2016-->
+            <!--</div>-->
+        <!--</div>-->
+
+    </div>
+</div>
+

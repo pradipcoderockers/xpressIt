@@ -1,0 +1,61 @@
+<%- include headerAdmin.ejs %>
+    <div class="wrapper" class="body-bg-black">
+
+
+        <div class="col-md-12">
+
+            <div class="container-body" style="padding:20px;margin:20px">
+
+
+                <form name="addCategoryForm" novalidate ng-submit="!addCategoryForm.$valid||category.addCategory()">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h3 align="center">Category </h3>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <label class="item item-input">
+                            <input type="text" placeholder="New Category" ng-model="category.newCategory.category" name="category" ng-required="true" class="form-control">
+                        </label>
+
+                            <div class="form-group has-error has-feedback" ng-show="addCategoryForm.category.$error.required && category.submitted==true">
+                                <label class="control-label">Category is required </label>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button class="btn btn-primary" ng-click="category.submitted=true">Add New Category</button>
+                        </div>
+                    </div>
+                </form>
+
+
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <div class="has-error" ng-if="category.saved">
+                            <label class="control-label">Category Saved</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-center">
+
+                        <div class="has-error" ng-if="category.error">
+                            <label class="control-label">Category Not Saved</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Content -->
+
+
+        </div>
+        <!--/End Wrapper-->
+    </div>

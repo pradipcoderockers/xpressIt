@@ -1,0 +1,114 @@
+.maxh-500{
+    max-height: 500px !important;
+}
+.border-clicked{
+    border:2px solid #1c84c6;
+}
+.active{
+    background-color: #00cfcb !important;
+    border-color: #00cfcb !important;
+    color: #FFFFFF !important;
+    z-index: 2;
+}
+.img-rounded{
+    width: 60px;
+    height: 60px;
+    border-radius: 50% !important;
+}
+.text-primary{
+    color: #676A6C !important;
+}
+.active-border{
+    border: 2px solid #00cfcb !important;
+}
+.no-border{
+    border:none !important;
+}
+.red{
+    color: red !important;
+}
+.green{
+    color: green !important;
+}
+.orange{
+    color: darkorange !important;
+}
+.gray{
+    color: gray !important;
+}
+.lightgray{
+    color: lightgray !important;
+}
+.registerButton{
+    margin-left: auto !important;
+    margin-right: auto !important;
+    min-width: 150px;
+
+}
+
+.bidWonBackground{
+    background-color:yellow !important;
+    color: green !important;
+}
+.white{
+    color: white !important;
+}
+.button-tab-active{
+    background-color: white !important;
+    border: none !important;
+    color: #1c84c6 !important;
+}
+.button-tab-inactive{
+    background-color: transparent !important;
+    border: none !important;
+    color: gray;
+}
+.tab-pull-up{
+    border:none !important;
+    margin-top:-1px;
+}
+.filter-button{
+    padding: 3px 6px !important;
+    border-radius: 13px !important;
+    margin-top:2px !important;
+    margin-bottom: 2px !important;
+}
+.filter-label{
+    display: inline-block !important;
+    width: 100px !important;
+}
+.order-badge{
+    position: absolute;
+    top: 15px;
+    left: -10px;
+    background-color: white;
+    border-radius: 50%;
+}
+.button-line-height{
+    line-height: 34px;
+}
+.ellipsis{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.golden{
+    color: #FFD700;
+}
+.logo{
+    max-width: 90%;
+    height: auto;
+}
+.navbar-header .page-heading{
+    padding-top: 10px !important;
+    line-height: 40px;
+    font-size: 30px;
+    font-weight: 400;
+    padding-left:25px !important;
+    padding-bottom: 0 !important;
+}
+.navbar-header .page-subheading{
+    line-height: 30px;
+    font-size: 16px;
+    padding-left:25px !important;
+}

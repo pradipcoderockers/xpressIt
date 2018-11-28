@@ -1,0 +1,154 @@
+<%- include header.ejs %>
+<div id="wrapper" class="body-bg-black">
+
+    <div id="page-wrapper" class="gray-bg">
+        <%- include innerHeader.ejs %>
+
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div id="allOrders" class="pre-scrollable maxh-500">
+                    <div class="row" ng-repeat="bid in spAllBids.spAllBids">
+                        <div class="col-md-12">
+                            <div class="contact-box padding-top-5 padding-bottom-5 margin-bottom-5" ng-click="spAllBids.openBid(bid)"
+                                 ng-class="{'active-border':spAllBids.clicked==bid.bidId,'no-border':spAllBids.clicked!=bid.bidId}">
+                              
+                                <div class="col-sm-2 col-md-2">
+                                    <div class="text-center">
+                                        <img ng-src="{{('img/'+bid.serviceCategory+'.png')}}" alt="image"
+                                             class=" m-t-xs img-responsive">
+                                    </div>
+                                </div>
+                                <div class="col-sm-10 col-md-10">
+                                    <div class="row">
+
+                                        <div class="col-sm-6">
+                                            <h2 class="margin-top-0 text-success">{{bid.serviceType |
+                                                capitalize}}</h2>
+                                        </div>
+                                        <div class="col-sm-6 ">
+                                            <h2 class="margin-top-0 text-right text-primary">
+                                                {{bid.serviceDate|date:'dd MMM'}}</h2>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-6">
+                                            <h2 class="margin-top-0">
+                                                 <small> Estimated Cost: {{bid.bidding}}</small>
+                                            </h2>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6">
+                                            <h2 class="margin-top-0 text-right">
+                                                <small>{{bid.serviceTime}}</small>
+                                            </h2>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row" ng-if="bid.show">
+                                    <!--<div class="col-sm-4">-->
+                                        <!--<input type="text" ng-model="bid.bidding" disabled>-->
+                                    <!--</div>-->
+                                    <div class="col-sm-4">
+                                        <button class="btn btn-primary block full-width m-b margin-0"  ng-click="spAllBids.applyBid(bid.bidding,bid.bidId,bid.orderId,bid.serviceProviderId,bid.customerId);bid.show=false"> Accept Job</button>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+
+                            </div>
+                        </div></div>
+                        </div>
+
+                    <span class="bold" ng-click="spAllBids.fetchMoreBids()"> fetch more jobs</span>
+                </div>
+                <div class="col-md-6" ng-if="spAllBids.showInfo">
+                    <div class="contact-box">
+                        <a>
+                            <div class="col-sm-12 col-md-12">
+                                <div class="row m-t">
+                                    <div class="col-sm-12 col-md-12" >
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12">
+                                                <h4>ORDER DETAILS</h4>
+                                                </div>
+                                            </div>
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6">
+                                                Order No: {{spAllBids.veiwOrder.orderNo}}
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                Description: {{spAllBids.veiwOrder.orderDescription}}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6">
+                                               Service Category: {{spAllBids.veiwOrder.serviceCategory}}
+                                            </div>
+
+                                            <div class="col-sm-6 col-md-6">
+                                                Service Type: {{spAllBids.veiwOrder.serviceType}}
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-sm-6 col-md-6">
+                                                Order Time: {{spAllBids.veiwOrder.bookingTime|date:'dd MMM, HH:mm'}}
+                                            </div>
+
+                                            <div class="col-sm-6 col-md-6">
+                                                Service Time: {{spAllBids.veiwOrder.serviceTime|date:'dd MMM, HH:mm'}}
+                                            </div>
+                                        </div>
+
+                                        <div class="row m-t">
+
+                                            <div class="col-sm-8 col-md-8">QUESTIONS
+                                            </div>
+
+                                            <div class="col-sm-4 col-md-4">ANSWERS
+                                            </div>
+                                        </div>
+
+                                        <div class="row" ng-repeat="ques in spAllBids.veiwOrder.questions">
+
+                                            <div class="col-sm-8 col-md-8">
+                                             {{$index+1}}. {{ques.question}}
+                                            </div>
+
+                                            <div class="col-sm-8 col-md-4" ng-repeat="ans in ques.answer">
+                                                {{ans.answer}}
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            <div class="clearfix"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <!--<div class="footer">-->
+            <!--<div class="pull-right">-->
+
+            <!--</div>-->
+            <!--<div>-->
+                <!--<strong>Copyright</strong> Youstart &copy; 2016-->
+            <!--</div>-->
+        <!--</div>-->
+
+    </div>
+</div>
+
+

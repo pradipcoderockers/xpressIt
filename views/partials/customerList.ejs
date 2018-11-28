@@ -1,0 +1,234 @@
+<%- include headerAdmin.ejs %>
+    <div id="wrapper" class="body-bg-black">
+
+
+        <div id="page-wrapper" class="gray-bg">
+            <%- include innerHeader.ejs %>
+                <div class="wrapper wrapper-content animated fadeInRight">
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div id="allOrders" class="pre-scrollable maxh-500">
+                                <div class="row" ng-repeat="customer in customerList.allCustomerList">
+                                    <div class="col-md-12">
+                                        <div class="contact-box" ng-click="customerList.openCustomerOrderHistory(customer)" ng-class="{'active-border':customerList.clicked==customer.customerId,'no-border':customerList.clicked!=customer.customerId}">
+                                            <a>
+
+                                                <div class="col-sm-10 col-md-10">
+                                                    <div class="row">
+                                                        <div class="col-sm-12 col-md-12">
+                                                            <h3 class="text-success">{{customer.name}}</h3>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12 col-md-12">
+                                                            email: {{customer.email}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12 col-md-6">
+                                                            Phone Number: {{customer.phoneNumber}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12 col-md-6">
+                                                            Joined On: {{customer.joinedOn|date:'dd MMM yyyy'}}
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-sm-12 col-md-6">
+                                                            City: {{customer.city}}
+                                                        </div>
+
+                                                        <div class="col-sm-12 col-md-6">
+                                                            Street: {{customer.street}}
+                                                        </div>
+                                                        <div class="col-sm-12 col-md-6">
+                                                            State: {{customer.state}}
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2 col-md-2">
+                                                    <div class="text-center">
+                                                        <img ng-src="/{{customer.image}}" class=" m-t-xs img-rounded">
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <h1>Click for details</h1>
+                        </div>
+
+
+                        <div class="col-md-6">
+
+
+                            <div id="allOrders" class="pre-scrollable maxh-500">
+                                <div ng-repeat="orderInfo in customerList.allOrders">
+                                    <div class="contact-box margin-bottom-0 padding-top-10 tab-pull-up">
+                                        <div class="row">
+                                            <div class="col-sm-12 text-center">
+                                                <h2>Order Status : <span ng-class="{'green':orderInfo.status==2,
+                                                   'red':orderInfo.status==0,
+                                                   'orange':orderInfo.status==1,}">
+                                                   {{orderInfo.statusText |capitalize}}
+                                                   </span>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="contact-box active margin-bottom-0 padding-top-5">
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12">
+
+                                                <div class="row ">
+
+                                                    <div class="col-sm-12 col-md-6 m-t">
+
+
+                                                        <div class="row">
+                                                            <div class="col-sm-12 col-md-12">
+                                                                <h4>STORE DETAILS</h4>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-sm-12 col-md-12">
+
+
+                                                                <div class="row">
+
+                                                                    <div class="col-sm-12 col-md-12">
+                                                                        Name: {{orderInfo.storeName}}
+                                                                    </div>
+                                                                    <div class="col-sm-12 col-md-12">
+                                                                        Address: {{orderInfo.storeAddress}}
+                                                                    </div>
+                                                                    <div class="col-sm-12 col-md-12">
+                                                                        City: {{orderInfo.storeCity}}
+                                                                    </div>
+                                                                    <div class="col-sm-12 col-md-12">
+                                                                        Zipcode: {{orderInfo.storeZip}}
+                                                                    </div>
+                                                                    <div class="col-sm-12 col-md-12">
+                                                                        Phone: {{orderInfo.storePhone}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="contact-box padding-top-5">
+                                        <a>
+
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-12">
+                                                    <div class="row m-t">
+
+
+                                                        <div class="col-sm-12 col-md-12">
+
+                                                            <div class="row">
+                                                                <div class="col-sm-12 col-md-12">
+                                                                    <h3>ORDER DETAILS</h3>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-sm-6 col-md-6">
+                                                                    Order No: {{orderInfo.orderNo}}
+                                                                </div>
+                                                                <div class="col-sm-6 col-md-6">
+                                                                    STATUS: {{orderInfo.statusText}}
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-sm-6 col-md-6">
+                                                                    Total: {{orderInfo.total}}
+                                                                </div>
+                                                                <div class="col-sm-6 col-md-6">
+                                                                    Delivery Fees: {{orderInfo.fees}}
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-6 col-md-6">
+                                                                    Total Items: {{orderInfo.items.length}}
+                                                                </div>
+                                                                <div class="col-sm-6 col-md-6">
+                                                                    Payment: {{orderInfo.paid}}
+                                                                </div>
+                                                            </div>
+
+
+
+
+                                                            <div class="row m-t">
+
+                                                                <div class="col-sm-8 col-md-8">
+                                                                    <h3>ITEMS</h3>
+                                                                </div>
+
+
+                                                            </div>
+
+                                                            <div class="row padding-bottom-5" ng-repeat="item in orderInfo.items">
+
+                                                                <div class="col-sm-8 col-md-8">
+                                                                    {{$index+1}}. {{item.name}}
+                                                                </div>
+
+                                                                <div class="col-sm-8 col-md-4">
+                                                                    QTY:{{item.qty}} PRICE: {{item.salePrice}}
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row" ng-repeat="image in orderInfo.imageUrl">
+                                                                <div class="col">
+                                                                    <img class="imageBlock" ng-src="{{image}}">
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <!--<div class="footer">-->
+                <!--<div class="pull-right">-->
+
+                <!--</div>-->
+                <!--<div>-->
+                <!--<strong>Copyright</strong> Youstart &copy; 2016-->
+                <!--</div>-->
+                <!--</div>-->
+
+        </div>
+    </div>

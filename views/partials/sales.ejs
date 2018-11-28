@@ -1,0 +1,60 @@
+<%- include headerAdmin.ejs %>
+    <div id="wrapper" class="body-bg-black">
+
+
+        <div id="page-wrapper" class="gray-bg">
+            <%- include innerHeader.ejs %>
+                <div class="wrapper wrapper-content animated fadeInRight">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div id="allOrders" class="pre-scrollable maxh-500">
+                                <div class="row">
+                                    <div class="col-md-6" ng-repeat="sale in saleCtrl.salesRecords">
+                                        <div class="contact-box" class="no-border">
+                                            <a>
+
+
+                                                <div class="col-sm-10 col-md-10 ">
+
+                                                    <div class="row ">
+
+
+                                                        <div class="col-sm-12 col-md-12">
+                                                            <h3 class="text-success">{{saleCtrl.getSaleType($index)}}</h3>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12 col-md-12">
+                                                            Vendor Wise: {{sale.vendor|currency}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12 col-md-12">
+                                                            Wallmart Wise: {{sale.wallmart|currency}}
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="clearfix"></div>
+                                                    <div class="clearfix"></div>
+
+
+                                                </div>
+
+                                                <div class="clearfix"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+        </div>
+    </div>

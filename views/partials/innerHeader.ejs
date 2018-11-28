@@ -1,0 +1,18 @@
+<div class="row border-bottom" ng-controller="innerHeaderCtrl as IHC">
+    <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header ">
+            <div class="page-heading">{{pageHeading}}</div>
+            <div class="page-subheading">{{pageSubheading}}</div>
+        </div>
+        <ul class="nav navbar-top-links navbar-right">
+
+
+            <li>
+                <a ng-click="IHC.logout()">
+                    <i class="fa fa-sign-out"></i> Log Out
+                </a>
+            </li>
+        </ul>
+
+    </nav>
+</div>

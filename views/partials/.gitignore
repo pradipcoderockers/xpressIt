@@ -1,0 +1,10 @@
+.DS_Store
+
+# Node.js
+/node_modules
+
+#Theme assets
+/public/assets
+
+# Vagrant
+.vagrant

@@ -1,0 +1,112 @@
+<div class="wrapper body-bg-white">
+    <div class="text-center loginscreen animated fadeInDown">
+       <div>
+          <div class="row">
+             <div class="col-md-12 text-center">
+                <img src="img/fxt_logo.jpg" class="logo">
+             </div>
+          </div>
+          <div class="row">
+             <div class="col-md-12">
+                <h2 class="bold">Pay for your selected package here</h2>
+             </div>
+          </div>
+             <div class="row">
+                   
+                <div class=" col-xs-12 col-md-offset-4 col-md-4 text-center">
+
+                        <div class="contact-box" class="no-border">
+                                <label class="bold"> Plan  Details
+                                </label>
+          
+                                
+                          <table>
+                              <tr>
+                                <th> Name
+                                  </th>
+                                  <th> Description
+                                    </th>
+                                    <th> Price
+                                      </th>
+          
+                                </tr>
+                                <tr >
+                                  <td>  {{PackagePaymentCtrl.userPackage.name}}
+                                  </td>
+                                  <td>  {{PackagePaymentCtrl.userPackage.description}}
+                                 </td>
+                                 <td>  {{PackagePaymentCtrl.userPackage.price}}
+                                 </td>
+                                 </tr>
+                                 
+                              </table>
+          
+                             </div>
+                   <div class="contact-box" class="no-border">
+                    
+                              <div class="panel panel-default">
+                                  <div class="panel-heading">
+                                      <div class="row">
+                                          <h3 class="text-center">Payment Details</h3>
+                                          <img class="img-responsive cc-img" src="http://www.prepbootstrap.com/Content/images/shared/misc/creditcardicons.png">
+                                      </div>
+                                  </div>
+                                  <div class="panel-body">
+                                      <form role="form">
+                                          <div class="row">
+                                              <div class="col-xs-12">
+                                                  <div class="form-group">
+                                                      <label>CARD NUMBER</label>
+                                                      <div class="input-group">
+                                                          <input type="tel" class="form-control" ng-model="PackagePaymentCtrl.payment.cardNumber" placeholder="Valid Card Number" />
+                                                          <span class="input-group-addon"><span class="fa fa-credit-card"></span></span>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="row">
+                                              <div class="col-xs-7 col-md-7">
+                                                  <div class="form-group">
+                                                      <label><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
+                                                      <input type="tel" class="form-control" ng-model="PackagePaymentCtrl.payment.expiryMonth" placeholder="MM" />
+                                                      <input type="tel" class="form-control" ng-model="PackagePaymentCtrl.payment.expiryYear" placeholder="YY" />
+
+                                                  </div>
+                                              </div>
+                                              
+                                             
+                                              <div class="col-xs-5 col-md-5 pull-right">
+                                                  <div class="form-group">
+                                                      <label>CV CODE</label>
+                                                      <input type="tel" class="form-control" ng-model="PackagePaymentCtrl.payment.cvc" placeholder="CVC" />
+                                                  </div>
+                                              </div>
+                                          </div>
+                                        
+                                      </form>
+                                  </div>
+                                  <div class="panel-footer">
+                                      <div class="row">
+                                          <div class="col-xs-12">
+                                              <button class="btn btn-warning btn-lg btn-block" ng-click="PackagePaymentCtrl.getToken()">Process payment</button>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <label ng-if="PackagePaymentCtrl.showError"><span class="hidden-xs">{{PackagePaymentCtrl.cardError}}</span></label>
+
+                              </div>
+                      
+
+
+                    
+
+                   </div>
+                </div>
+
+
+                
+             </div>
+             
+       </div>
+    </div>
+ </div>

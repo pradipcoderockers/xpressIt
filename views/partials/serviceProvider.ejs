@@ -1,0 +1,262 @@
+<%- include headerAdmin.ejs %>
+    <div id="wrapper" class="body-bg-black">
+
+
+        <div id="page-wrapper" class="gray-bg">
+            <%- include innerHeader.ejs %>
+                <div class="wrapper wrapper-content animated fadeInRight" ng-if="!SPCtrl.showEditForm">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div id="allOrders" class="pre-scrollable maxh-500">
+                                <div class="row">
+                                    <div class="col-md-6" ng-repeat="provider in SPCtrl.allServiceProviders">
+                                        <div class="contact-box" class="no-border">
+                                            <a>
+
+
+                                                <div class="col-sm-10 col-md-10 ">
+
+                                                    <div class="row ">
+
+
+                                                        <div class="col-sm-12 col-md-12">
+                                                            <h3 class="text-success">{{provider.name}}</h3>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12 col-md-12">
+                                                            Organisation: {{provider.organisation}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12 col-md-12">
+                                                            Email: {{provider.email}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12 col-md-12">
+                                                            Policy: {{provider.policy}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12 col-md-12">
+                                                            Street: {{provider.street}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12 col-md-12">
+                                                            City: {{provider.city}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12 col-md-12">
+                                                            State: {{provider.state}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12 col-md-12">
+                                                            Phone: {{provider.phone}}
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="clearfix"></div>
+                                                    <div class="clearfix"></div>
+
+
+                                                </div>
+                                                <div class="col-sm-2 col-md-2">
+                                                    <div class="text-center">
+                                                        <img ng-src="/{{provider.image}}" class=" m-t-xs img-rounded">
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="col-sm-12 col-md-12">
+                                                    <div class="row text-right">
+                                                        <button class="btn btn-success" ng-click="SPCtrl.editVendor(provider)">Edit 
+                                                                </button>
+                                                        <button class="btn btn-danger" ng-if="!provider.disabled" ng-click="SPCtrl.disableEmployee(provider);$event.stopPropagation()">
+                                                            Disable 
+                                                        </button>
+
+                                                        <button class="btn btn-danger" ng-if="provider.disabled" ng-click="SPCtrl.disableEmployee(provider);$event.stopPropagation()">
+                                                            Enable 
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="text-center loginscreen animated fadeInDown" ng-if="SPCtrl.showEditForm">
+                    <div>
+
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <h2 class="bold">Edit Vendor Details</h2>
+                            </div>
+                        </div>
+                        <form name="addServiceProviderForm" class="m-t" role="form" novalidate ng-submit="!addServiceProviderForm.$valid||SPCtrl.submit()">
+                            <div class="row">
+
+                                <div class="col-md-offset-4 col-md-4 col-lg-4 text-center">
+
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="First Name" ng-required="true" name="firstName" ng-model="SPCtrl.user.firstName" name="firstName">
+                                    </div>
+
+                                    <div ng-if="addServiceProviderForm.firstName.$error.required && SPCtrl.submitted">
+                                        <div class="errors">Please enter first name.</div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Last Name" ng-required="true" name="lastName" ng-model="SPCtrl.user.lastName">
+                                    </div>
+
+                                    <div ng-if="addServiceProviderForm.lastName.$error.required && SPCtrl.submitted">
+                                        <div class="errors">Please enter last name.</div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Organization Name" name="organisation" ng-model="SPCtrl.user.organisation" ng-required="true">
+                                    </div>
+
+                                    <div ng-if="addServiceProviderForm.organisation.$error.required && SPCtrl.submitted">
+                                        <div class="errors">Please enter organization name.</div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" numbers-only class="form-control" placeholder="Phone Number" ng-required="true" name="phoneNumber" ng-model="SPCtrl.user.phone" limit-to="10" ng-minlength="10" ng-maxlength="10">
+                                    </div>
+
+                                    <div ng-if="addServiceProviderForm.phoneNumber.$error.required && SPCtrl.submitted">
+                                        <div class="errors">Please enter phone number.</div>
+                                    </div>
+
+                                    <div ng-if="addServiceProviderForm.phoneNumber.$error.minlength">
+                                        <div class="errors">10 digits only</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" placeholder="Email" ng-required="true" name="email" ng-model="SPCtrl.user.email">
+                                    </div>
+
+                                    <div ng-if="addServiceProviderForm.email.$error.required && SPCtrl.submitted">
+                                        <div class="errors">Please enter email</div>
+                                    </div>
+
+                                    <div ng-if="!addServiceProviderForm.email.$error.required && addServiceProviderForm.email.$invalid && SPCtrl.submitted">
+                                        <div class="errors">Please enter a valid email</div>
+                                    </div>
+
+
+
+
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="city" ng-required="true" name="city" ng-model="SPCtrl.user.city">
+                                    </div>
+                                    <div ng-if="addServiceProviderForm.city.$error.required && SPCtrl.submitted">
+                                        <div class="errors">Please enter city</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="street" ng-required="true" name="street" ng-model="SPCtrl.user.street">
+                                    </div>
+                                    <div ng-if="addServiceProviderForm.street.$error.required && SPCtrl.submitted">
+                                        <div class="errors">Please enter street</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="state" ng-required="true" name="state" ng-model="SPCtrl.user.state">
+                                    </div>
+                                    <div ng-if="addServiceProviderForm.state.$error.required && SPCtrl.submitted">
+                                        <div class="errors">Please enter state</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" numbers-only class="form-control" placeholder="zipcode" ng-required="true" name="zipcode" ng-model="SPCtrl.user.zipcode" limit-to="6" ng-minlength="6" ng-maxlength="6">
+                                    </div>
+                                    <div ng-if="addServiceProviderForm.zipcode.$error.required && SPCtrl.submitted">
+                                        <div class="errors">Please enter zipcode</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="longitude" ng-required="true" name="logitude" ng-model="SPCtrl.user.latLong.long">
+                                    </div>
+                                    <div ng-if="addServiceProviderForm.logitude.$error.required && SPCtrl.submitted">
+                                        <div class="errors">Please enter longitude</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="latitude" ng-required="true" name="latitude" ng-model="SPCtrl.user.latLong.lat">
+                                    </div>
+                                    <div ng-if="addServiceProviderForm.latitude.$error.required && SPCtrl.submitted">
+                                        <div class="errors">Please enter latitude</div>
+                                    </div>
+
+                                    <div class="contact-box" class="no-border">
+                                        <label class="bold"> Select Timing
+                                        </label>
+                                        <div class="form-group" ng-repeat="time in SPCtrl.user.timing">
+
+
+
+                                            <label>{{SPCtrl.days[$index]}}
+                                        <label class="switch">
+        
+                                                        <input type="checkbox" ng-model="time.value" name="day" >
+                                                       <span class="slider round"></span>
+                                
+                                        </label>
+                                            </label>
+                                            <label>Start Time
+                                        <select ng-model="time.startTime" class="form-control maincats" name="start" data-id="56" required="time.value">
+                                                <option ng-repeat="slot in SPCtrl.slots">{{slot}}</option>
+                                        </select>
+                                    </label>
+                                            <label>End Time
+                                                <select ng-model="time.endTime" class="form-control maincats"  name="end" data-id="56" required="time.value">
+                                                        <option ng-repeat="slot in SPCtrl.slots">{{slot}}</option>
+                                                </select>
+                                        </label>
+
+                                            <!-- <div ng-if="(addServiceProviderForm.start.$error.required ||addServiceProviderForm.end.$error.required )&& SPCtrl.submitted">
+                                            <div class="errors">Please enter end and start time</div>
+                                        </div> -->
+
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea class="form-control" placeholder="Policy" name="policy" ng-model="SPCtrl.user.policy" required="true"></textarea>
+                                    </div>
+                                    <div ng-if="addServiceProviderForm.policy.$error.required && SPCtrl.submitted">
+                                        <div class="errors">Please enter policy</div>
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+                            <div class="row border-top-dark padding-top-20">
+                                <div class="col-sm-12 text-center">
+                                    <button type="submit" class="btn btn-primary block m-b registerButton" ng-click="SPCtrl.submitted=true">Save Changes
+                            </button>
+                                    <button class="btn btn-danger" ng-click="SPCtrl.closeEditVendor(provider);$event.stopPropagation()">
+                                    Back 
+                                </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+        </div>
+    </div>

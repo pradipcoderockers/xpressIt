@@ -1,0 +1,69 @@
+<div class="wrapper body-bg-white">
+
+    <div class="text-center loginscreen animated fadeInDown">
+        <div>
+            <div class="row">
+
+                <div class="col-md-12 text-center">
+                    <img src="img/fxt_logo.jpg" class="logo">
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-12 text-center">
+                    <h2 class="bold">Registered Retailer</h2>
+                    <span>If you have an account with us, please log in.</span>
+                </div>
+            </div>
+            <form class="m-t" role="form" ng-submit="SPLoginCtrl.login()">
+
+
+                <div class="col-md-offset-4 col-md-4 col-lg-4 text-center">
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Username" required="" ng-model="SPLoginCtrl.user.email">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" required="" ng-model="SPLoginCtrl.user.password">
+                    </div>
+                    <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+                    <a href="#" ng-click="SPLoginCtrl.forgotPassword()">
+                  Forgot password?
+                </a>
+                </div>
+
+
+                <div class="row" ng-if="SPLoginCtrl.loginError">
+                    <div class="col-md-12 text-center">
+
+                        <h4 class="bold errors">{{SPLoginCtrl.errorMessage}}</h4>
+                    </div>
+                </div>
+
+            </form>
+
+
+            <div class="row ">
+
+                <div class="col-md-12 ">
+                    <h2 class="bold">New Retailer</h2>
+                    <span>           
+                     Sign up today and start selling on xpressit in minutes.
+                        </span>
+                </div>
+                <div class="col-md-offset-4 col-md-4 col-lg-4 text-center m-b">
+
+                    <div class="form-group">
+                        <button type="button" ng-click="SPLoginCtrl.navigate('vsignup')" class="btn btn-primary block half-width m-b">Create an account</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+
+
+</div>
