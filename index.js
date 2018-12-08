@@ -33,8 +33,6 @@ var mongoose = require('mongoose')
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 mongoose.connect(mongooseConnection.dbPath);
-
-
 //Include Controllers Here
 var XpressItUserController = require('./controllers/XpressItUserController');
 var XpressItAddressController = require('./controllers/XpressItAddressController');
@@ -195,7 +193,7 @@ app.get('/wallmart/innerSubcategory', XpressItInnerSubcategoryController.getInne
 app.get('/wallmart/getStore/latLong', XpressItStoreController.getStoresByLatLong);
 
 //=====Items API's=======
-app.get('/wallmart/getItems', XpressItItemController.getItemList);
+app.get('/wallmart/getItems', XpressItItemController.getVendorProduct);
 app.get('/wallmart/searchItem', XpressItItemController.searchItem);
 
 //=====Notification API's======
@@ -309,7 +307,7 @@ app.get('/vendor', XpressItUserController.getVenderList);
 app.post('/updateVendorAccountStatus', XpressItUserController.updateVendorAccountStatus);
 app.get('/adminGetOrders', XpressItOrdersController.adminGetOrders);
 
-app.post('/vendor/product', XpressItItemController.getVendorProduct);
+app.get('/vendor/product', XpressItItemController.getVendorProduct);
 app.post('/vendor/product/subcategory', XpressItItemController.getVendorProductBySubCategory);
 
 app.put('/delete/product', XpressItItemController.deleteProduct);
@@ -332,7 +330,7 @@ app.post('/sale', XpressItOrdersController.getSales)
 
 app.get('*', routes.index);
 app.listen(8080);
-console.log('Running on http://localhost:' + 8080);
+console.log('Running on http://localhost:8080');
 
 function ensureAuthenticated(req, res, next) {
 

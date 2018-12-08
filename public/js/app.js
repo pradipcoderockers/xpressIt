@@ -98,12 +98,12 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider) {
             controller: 'saleCtrl',
             controllerAs: 'saleCtrl'
         }).when('/', {
-            templateUrl: 'partials/home',
-            controller: 'homeCtrl',
-            controllerAs: 'homeCtrl'
+             templateUrl: 'partials/adminLogin',
+            controller: 'adminLoginCtrl',
+            controllerAs: 'adminLoginCtrl'
         })
         .otherwise({
-            redirectTo: '/'
+            redirectTo: '/alogin'
         });
     $locationProvider.html5Mode(true);
 })

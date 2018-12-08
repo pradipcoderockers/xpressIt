@@ -32,8 +32,10 @@ function createCategory(req, res) {
 
 function getCategory(req, res) {
     VendorCategory.find().exec(function (err, document) {
+      console.log('err',document);
+        if (document && document!=null && document!='null') {
+			      console.log('err33',document);
 
-        if (document) {
             res.json({
                 status: 200,
                 message: 'category fetched',
@@ -41,9 +43,9 @@ function getCategory(req, res) {
             })
         }
         if (err) {
-            res.status(err.status).json({
-                status: err.status,
-                message: err.message,
+               res.json({
+                status: 200,
+                message: 'category not found',
                 response: {}
             })
         }

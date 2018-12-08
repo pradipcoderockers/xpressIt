@@ -164,7 +164,7 @@ function deleteProduct(req, res) {
 }
 
 function getVendorProduct(req, res) {
-    var vendorId = req.body.vendorId;
+    var vendorId = req.query.vendorId;
     VendorItem.find({ vendorId: vendorId, deleted: false }).exec(function (err, result) {
 
         if (err) {

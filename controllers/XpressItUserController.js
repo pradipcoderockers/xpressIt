@@ -484,6 +484,7 @@ function getUserLoggedInfo(req, res) {
 };
 
 function vendorByLocation(req, res) {
+	console.log(req.query.lat);
     var lat = parseFloat(req.query.lat);
     var long = parseFloat(req.query.long);
     var minLat = lat - .9;
