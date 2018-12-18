@@ -1,5 +1,6 @@
 var XpressItCategory = require('../models/XpressItCategory');
 var XpressItCategoryList = require('../XpressItCategoryList');
+var VendorItem = require('../models/XpressItVendorItem');
 var _ = require('underscore');
 module.exports = {
     createCategory: createCategory,

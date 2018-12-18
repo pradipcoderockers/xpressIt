@@ -320,6 +320,9 @@ app.get('/itembysubcategory', XpressItItemController.getProductBySubcategory)
 app.get('/itembytext', XpressItItemController.getProductByText)
 app.get('/vendorbylocation', XpressItUserController.vendorByLocation)
 app.post('/sale', XpressItOrdersController.getSales)
+app.get('/vendorcategorylist', VendorCategoryController.getVendorCategory)
+app.get('/vendorsubcategorylist', VendorSubcategoryController.getVendorSubcategory)
+
 
 
 

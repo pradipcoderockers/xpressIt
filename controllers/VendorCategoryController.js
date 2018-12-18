@@ -1,8 +1,10 @@
 var VendorCategory = require('../models/VendorCategory');
+var VendorItem = require('../models/XpressItVendorItem');
 var _ = require('underscore');
 module.exports = {
     createCategory: createCategory,
-    getCategory: getCategory
+    getCategory: getCategory,
+    getVendorCategory:getVendorCategory,
 }
 
 function createCategory(req, res) {
@@ -51,3 +53,47 @@ function getCategory(req, res) {
         }
     })
 };
+
+function getVendorCategory(req, res) {
+    
+	var vendorId = req.query.vendorId;
+	VendorItem.aggregate(
+						[  
+						{"$match":{"vendorId": vendorId}},
+						{"$group": {
+						"_id": "$categoryId",
+						"categoryId": { "$first": "$categoryId"},
+						}},
+						{ "$project" : { _id : 0 , categoryId : 1 } }
+						],
+	function(err,result) 
+	{
+		if (err) throw err;
+		var promiseArr = [];
+	    var counter = 1;
+		for(var i = 0; i < result.length; i++) 
+		{
+			var data = result[i];
+			VendorCategory.findOne({"_id": new Object(data.categoryId)}).exec(function (err, document) {
+			if(document)
+			{
+				promiseArr.push(document);
+				if(counter == result.length - 1) 
+				{
+					res.json({
+					status: 200,
+					message: 'category fetched',
+					response: promiseArr
+					})
+				}
+				counter++;	
+			}
+		 })
+			
+		}
+	  }
+	)
+   };
+
+
+
