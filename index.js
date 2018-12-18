@@ -323,7 +323,7 @@ app.post('/sale', XpressItOrdersController.getSales)
 app.get('/vendorcategorylist', VendorCategoryController.getVendorCategory)
 app.get('/vendorsubcategorylist', VendorSubcategoryController.getVendorSubcategory)
 app.get('*', routes.index);
-app.listen(8080);
+app.listen(50000);
 console.log('Running on http://localhost:8080');
 
 function ensureAuthenticated(req, res, next) {
