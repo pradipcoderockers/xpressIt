@@ -322,13 +322,6 @@ app.get('/vendorbylocation', XpressItUserController.vendorByLocation)
 app.post('/sale', XpressItOrdersController.getSales)
 app.get('/vendorcategorylist', VendorCategoryController.getVendorCategory)
 app.get('/vendorsubcategorylist', VendorSubcategoryController.getVendorSubcategory)
-
-
-
-
-
-
-
 app.get('*', routes.index);
 app.listen(8080);
 console.log('Running on http://localhost:8080');
