@@ -133,7 +133,7 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider) {
 
             switch (tab) {
                 case 'vendors':
-                    $rootScope.pageHeading = 'All Vendors';
+                    $rootScope.pageHeading = 'All Restaurant Owners';
                     $rootScope.pageSubheading = '';
                     $rootScope.activeTab = 'vendors';
                     break;
