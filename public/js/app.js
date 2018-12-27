@@ -97,7 +97,8 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider) {
             templateUrl: 'partials/sales',
             controller: 'saleCtrl',
             controllerAs: 'saleCtrl'
-        }).when('/', {
+        })
+        .when('/', {
              templateUrl: 'partials/adminLogin',
             controller: 'adminLoginCtrl',
             controllerAs: 'adminLoginCtrl'
