@@ -218,16 +218,16 @@ function forgotPassword(req, res) {
 
 
     var message = {
-        from: 'XpressIt <no-reply@xpressit.com>',
+        from: 'Deliveryou <no-reply@Deliveryou.com>',
         to: email,
         subject: "Reset password request",
-        text: "XpressIT" +
+        text: "Deliveryou" +
             "\n----------------------------------------" +
-            "\n\nYour new password for XpressIT is :" + newPassword +
+            "\n\nYour new password for Deliveryou is :" + newPassword +
             "\n\nUse this password for logging in your account." +
             "\n\nAfter logging in, please change your password by clicking on the Settings gear on the top right of menu." +
             "\n\n----------------------------------------" +
-            "\nThanks for using XpressIT"
+            "\nThanks for using Deliveryou"
     };
 
 

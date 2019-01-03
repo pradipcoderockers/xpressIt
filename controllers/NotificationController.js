@@ -115,7 +115,7 @@ function getNotificationType(type, role) {
                 break;
             case 2:
                 content = {
-                    body: 'Thanks for shopping with Xpressit',
+                    body: 'Thanks for shopping with Deliveryou',
                     title: 'Order Delivered'
                 }
                 break;
