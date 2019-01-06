@@ -900,7 +900,7 @@ function vendorSignupCtrl(Upload, User, $timeout, $q, Package, Payment) {
 
             vendorCtrl.user.image = 'uploads/' + data.name;
         }).then(function () {
-            vendorCtrl.user.packageId = vendorCtrl.user.package._id;
+            vendorCtrl.user.packageId = 1;
             User.vendorsignup(vendorCtrl.user, function (data) {
 
                 if (data.error) {
