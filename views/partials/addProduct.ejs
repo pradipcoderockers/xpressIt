@@ -21,27 +21,6 @@
 
                         <div class="col-md-offset-4 col-md-4 col-lg-4 text-center">
 
-
-                            
-                            <div class="form-group">
-                                    <label class="bold"> Select Category
-                                        </label>
-                                 <select  ng-options="value.path for value in AddProductCtrl.categoryListing" class="form-control maincats" ng-model="AddProductCtrl.itemData.category" ng-change="AddProductCtrl.getSubcategory(AddProductCtrl.itemData.category.categoryId)"></select>
-
-
-                                      
-                                                              </div>
-                            
-                            <div class="form-group">
-                                    <label class="bold"> Select Subcategory
-                                        </label>
-                                <select  ng-options="value.path for value in AddProductCtrl.subCategoryListing" class="form-control maincats" ng-model="AddProductCtrl.itemData.subcategory"></select>
-                                
-
-                                      
-                                                              </div>
-
-
                             <div class="form-group">
                                     <label class="bold"> Item Name
                                         </label>
@@ -106,27 +85,6 @@
                 <form name="editProductProviderForm" class="m-t" role="form" novalidate ng-submit="!editProductProviderForm.$valid||AddProductCtrl.editProduct()" ng-if="AddProductCtrl.showEditForm">
                     <div class="row">
                         <div class="col-md-offset-4 col-md-4 col-lg-4 text-center">
-                            <div class="form-group">
-                                    <label class="bold"> Select Category
-                                        </label>
-                                <select  ng-options="value.path for value in AddProductCtrl.categoryListing" class="form-control maincats" ng-model="AddProductCtrl.editItemData.category" ng-change="AddProductCtrl.getSubcategory(AddProductCtrl.editItemData.category.categoryId)"></select>
-
-
-                                      
-                                                              </div>
-                            
-                            <div class="form-group">
-                                    <label class="bold"> Select Subcategory
-                                        </label>
-                                <select  ng-options="value.path for value in AddProductCtrl.subCategoryListing" class="form-control maincats" ng-model="AddProductCtrl.editItemData.subcategory"></select>
-                                
-
-                                      
-                                                              </div>
-            
-                           
-
-
                             <div class="form-group">
                                     <label class="bold"> Item Name
                                         </label>
