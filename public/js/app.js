@@ -417,12 +417,6 @@ function SPLoginCtrl(Login, $location, LoggedInUser, $rootScope, User, $timeout)
                 $rootScope.loggedInSP = data.userData._id;
                 localStorage.setItem('loggedInUser', data.userData._id);
                 localStorage.setItem('loggedInUserPackageId', data.userData.packageId);
-                if (!data.userData.packagePaymentDone && data.userData.packageId) {
-                    localStorage.setItem('loggedInUserPackageId', data.userData.packageId);
-                    $location.path('/packagepayment');
-                    return;
-
-                }
                 $rootScope.showHighlightedTab('vhome');
                 $location.path('/vhome');
             }

@@ -76,38 +76,6 @@
                    <div ng-if="addServiceProviderForm.password.$error.required && vendorCtrl.submitted">
                       <div class="errors">Please enter password</div>
                    </div>
-
-
-                  <select ng-model="vendorCtrl.user.package" ng-init="vendorCtrl.user.package=vendorCtrl.packageList[0]" class="form-control maincats"  name="end" data-id="56">
-                    <option ng-repeat="option in vendorCtrl.packageList" ng-value="option">{{option.name}}</option>                 
-                  </select>
-                    <div class="contact-box" class="no-border">
-                       <label class="bold"> Plan  Details
-                       </label>
- 
-                       
-                 <table>
-                     <tr>
-                       <th> Name
-                         </th>
-                         <th> Description
-                           </th>
-                           <th> Price
-                             </th>
- 
-                       </tr>
-                       <tr >
-                         <td>  {{vendorCtrl.user.package.name}}
-                         </td>
-                         <td>  {{vendorCtrl.user.package.description}}
-                        </td>
-                        <td>  {{vendorCtrl.user.package.price}}
-                        </td>
-                        </tr>
-                        
-                     </table>
- 
-                    </div>
                  </div>
                   </div>
                   <div class=" col-md-4 col-lg-4 text-center">
