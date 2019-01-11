@@ -93,8 +93,8 @@ function addProduct(req, res) {
             description: item.description,
             category: item.category.path,
             vendorId: item.vendorId,
-            categoryId: item.category.categoryId,
-            subCategoryId: item.subcategory.subcategoryId,
+            categoryId: 0,
+            subCategoryId: 0,
             imageLink: item.image
 
         });
@@ -121,8 +121,8 @@ function addProduct(req, res) {
 
 function editProduct(req, res) {
     var item = req.body;
-    item.categoryId = item.category.categoryId;
-    item.subCategoryId = item.subcategory.subcategoryId;
+    item.categoryId = 0;
+    item.subCategoryId = 0;
     VendorItem.findOneAndUpdate({ itemId: item.itemId }, { $set: item }, { new: true }, function (err, result) {
 
         if (err) {
