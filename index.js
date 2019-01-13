@@ -307,7 +307,7 @@ app.get('/vendor', XpressItUserController.getVenderList);
 app.post('/updateVendorAccountStatus', XpressItUserController.updateVendorAccountStatus);
 app.get('/adminGetOrders', XpressItOrdersController.adminGetOrders);
 app.get('/vendor/product', XpressItItemController.getVendorProduct);
-app.post('/vendor/product', XpressItItemController.getVendorProduct);
+app.post('/vendor/product', XpressItItemController.getVendorProductPost);
 app.post('/vendor/product/subcategory', XpressItItemController.getVendorProductBySubCategory);
 app.put('/delete/product', XpressItItemController.deleteProduct);
 app.post('/product', XpressItItemController.addProduct);

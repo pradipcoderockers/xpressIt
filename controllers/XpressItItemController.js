@@ -11,7 +11,8 @@ module.exports = {
     getVendorProduct: getVendorProduct,
     getProductBySubcategory: getProductBySubcategory,
     getProductByText: getProductByText,
-    getVendorProductBySubCategory: getVendorProductBySubCategory
+    getVendorProductBySubCategory: getVendorProductBySubCategory,
+    getVendorProductPost:getVendorProductPost
 }
 var requiredFields = ['itemId', 'parentItemId', 'name', 'msrp', 'salePrice', 'longDescription', 'color', 'stock', 'thumbnailImage', 'mediumImage', 'largeImage']
 
@@ -183,6 +184,28 @@ function getVendorProduct(req, res) {
         })
     });
 }
+
+function getVendorProductPost(req, res) {
+    var vendorId = req.body.vendorId;
+    VendorItem.find({ vendorId: vendorId, deleted: false }).exec(function (err, result) {
+
+        if (err) {
+            console.log(err);
+            res.status(500).json({
+                status: 500,
+                message: 'error',
+                response: err
+            })
+
+        }
+        res.status(200).json({
+            status: 200,
+            message: 'products list',
+            response: result
+        })
+    });
+}
+
 
 function getVendorProductBySubCategory(req, res) {
     var vendorId = req.body.vendorId;
